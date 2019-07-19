@@ -1,4 +1,23 @@
+# 動画をjupyterにいれてOpenCVをimportして画像キャプチャーを作成するプログラム
 
+# -*- coding: utf-8 -*-
+import cv2
+import os
+#動画ファイルを読み込む
+file_name = u"images/PCvideo.mp4"
+video = cv2.VideoCapture(file_name)
+#スクリーンキャプチャを保存するディレクトリ
+dir_name = "screen_caps"
+if not os.path.exists(dir_name):
+    os.mkdir(dir_name)
+#フレーム数を取得
+frame_count = int(video.get(7))
+for i in range(frame_count):
+    _, frame = video.read()
+    cv2.imwrite(dir_name+ "/" + str(i) + ".png", frame)
+     
+     
+# 輝度値を計算してそれぞれの平均値をグラフにプロットするプログラム
 im0 = imread('screen_caps/0.png')
 im1 = imread('screen_caps/1.png')
 im2 = imread('screen_caps/2.png')
